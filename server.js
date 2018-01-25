@@ -20,6 +20,7 @@ app.get('/',function(req,res){
 	console.log(ip);
 	var lang = header['accept-language'].split(';')[0].split(',')[0];
 	var software = header['user-agent'].split('(')[1].split(')')[0];
+	var ip = ip.split(',')[0];
 	var head = {
 		"ipaddress": ip,
 		"language": lang,
