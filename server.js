@@ -11,7 +11,11 @@ app.set('view engine', 'ejs');
 app.use(bodyparser.urlencoded({extended:false}));
 
 app.get('/',function(req,res){
-	var ip = req.ip;
+	//var ip = req.ip;
+	var ip = req.headers['x-forwarded-for'] ||
+     req.connection.remoteAddress ||
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress;
 	var header = req.headers;
 	console.log(ip);
 	var lang = header['accept-language'].split(';')[0].split(',')[0];
